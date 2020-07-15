@@ -1,4 +1,4 @@
-package com.huchonglin;
+package com.huchonglin.aop;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -8,7 +8,7 @@ import java.lang.reflect.Proxy;
  * @author: hcl
  * @date: 2020/7/3 00:11
  */
-public class JdkProxy {
+public class JdkProxy implements AopProxy {
     private Object object;
     private Method beforeMethod;
     private Method afterMethod;
@@ -21,6 +21,7 @@ public class JdkProxy {
         this.aspectObject = aspectObject;
     }
 
+    @Override
     public Object getProxy() {
         return Proxy.newProxyInstance(object.getClass().getClassLoader(), object.getClass().getInterfaces(),
             new InvocationHandler() {

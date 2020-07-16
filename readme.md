@@ -5,12 +5,11 @@
 ## 使用说明  
 #### 一、core模块  
 - #### AnnotationConfigApplicationContext("配置类.class")  
->目前只实现了只能传递一个配置类的构造函数  
-配置类需要加 **@Configuration(value=" ")** 注解  
+目前只实现了只能传递一个配置类的构造函数，配置类需要加 **@Configuration(value=" ")** 注解  
 - #### @Bean  
 >其他的注解后续实现，原理一样  
 - #### AOP  
->切面类需要增添 **@Aspect(value="需要被代理的包路径")** 注解  
+切面类需要增添 **@Aspect(value="需要被代理的包路径")** 注解  
 ````java
 @Aspect("com.spring.service")
 public class demo{
@@ -24,22 +23,21 @@ public class demo{
 ````  
 > 只实现了基于jdk动态代理的，所以必须带接口  
 - ####BeanPostProcessor接口
->实现原理：两种(伪代码)  
+实现原理：两种(伪代码)  
 1.bean.isInterface(beanPostProcessor) ? 反射调用 : continue;  
 结果：如果要实现单个Bean的处理逻辑，这是可取的，但是Spring并不是这么用，从源码文档可以看到这段话
->````text
+````text
 >Apply this BeanPostProcessor to the given new bean instance <i>after</i> any bean
 >initialization callbacks
->````  
->也就是说这个beanPostProcessor是应用在所有的bean实例上的
----  
->2.Set<BeanPostProcessor\>，bean.isInterface(beanPostProcessor) ?  
+````  
+也就是说这个beanPostProcessor是应用在所有的bean实例上的 
+
+2.Set<BeanPostProcessor\>，bean.isInterface(beanPostProcessor) ?  
 结果：这段代码和实现原理1的思路一样，只不过实现逻辑不同 
   
 ### 二、web  
 - #### web.xml
->配置DispatcherServlet，并且设置容器启动时就加载此Servlet。  
-用于拦截指定的所有请求，并在service()方法里做相应处理
+配置DispatcherServlet，并且设置容器启动时就加载此Servlet。用于拦截指定的所有请求，并在service()方法里做相应处理
 - #### 配置文件
 ```properties
 controllerPackage=org.com.controller

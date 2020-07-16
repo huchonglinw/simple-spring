@@ -1,6 +1,6 @@
 package com.huchonglin.core;
 
-import com.huchonglin.anno.*;
+import com.huchonglin.annotation.*;
 import com.huchonglin.aop.AopProxy;
 import com.huchonglin.aop.JdkProxy;
 import com.huchonglin.core.constant.AnnotationTypeConfigConsts;

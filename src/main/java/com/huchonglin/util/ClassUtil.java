@@ -1,7 +1,7 @@
 package com.huchonglin.util;
 
-import com.huchonglin.anno.Controller;
-import com.huchonglin.anno.Repository;
+import com.huchonglin.annotation.Controller;
+import com.huchonglin.annotation.Repository;
 
 import java.io.File;
 import java.io.IOException;

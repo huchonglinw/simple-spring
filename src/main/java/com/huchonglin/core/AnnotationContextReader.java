@@ -1,6 +1,6 @@
 package com.huchonglin.core;
 
-import com.huchonglin.anno.Configuration;
+import com.huchonglin.annotation.Configuration;
 import com.huchonglin.util.ClassUtil;
 
 import java.util.HashSet;

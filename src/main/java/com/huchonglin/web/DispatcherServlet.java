@@ -1,6 +1,6 @@
 package com.huchonglin.web;
 
-import com.huchonglin.anno.RequestMapping;
+import com.huchonglin.annotation.RequestMapping;
 import com.huchonglin.util.ClassUtil;
 import com.huchonglin.util.ServletContextUtil;
 import com.huchonglin.util.WebUtil;

@@ -1,4 +1,4 @@
-package com.huchonglin.anno;
+package com.huchonglin.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,9 +7,9 @@ import java.lang.annotation.Target;
 
 /**
  * @author: hcl
- * @date: 2020/7/2 22:10
+ * @date: 2020/7/4 21:33
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface After {
+@Target(ElementType.TYPE)
+public @interface Repository {
 }

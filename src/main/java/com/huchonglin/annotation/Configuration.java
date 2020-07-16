@@ -1,4 +1,4 @@
-package com.huchonglin.anno;
+package com.huchonglin.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

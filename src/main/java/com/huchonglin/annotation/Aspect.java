@@ -1,5 +1,4 @@
-package com.huchonglin.anno;
-
+package com.huchonglin.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,9 +7,10 @@ import java.lang.annotation.Target;
 
 /**
  * @author: hcl
- * @date: 2020/7/2 20:49
+ * @date: 2020/7/2 21:13
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface AutoWired {
+@Target(ElementType.TYPE)
+public @interface Aspect {
+    String value();
 }

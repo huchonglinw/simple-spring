@@ -22,13 +22,13 @@ public class demo{
 }
 ````  
 > 只实现了基于jdk动态代理的，所以必须带接口  
-- ####BeanPostProcessor接口
+- #### BeanPostProcessor接口
 实现原理：两种(伪代码)  
 1.bean.isInterface(beanPostProcessor) ? 反射调用 : continue;  
 结果：如果要实现单个Bean的处理逻辑，这是可取的，但是Spring并不是这么用，从源码文档可以看到这段话
 ````text
->Apply this BeanPostProcessor to the given new bean instance <i>after</i> any bean
->initialization callbacks
+Apply this BeanPostProcessor to the given new bean instance <i>after</i> any bean
+initialization callbacks
 ````  
 也就是说这个beanPostProcessor是应用在所有的bean实例上的 
 

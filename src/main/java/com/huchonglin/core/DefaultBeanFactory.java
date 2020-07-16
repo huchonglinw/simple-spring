@@ -8,10 +8,7 @@ import com.huchonglin.util.ClassUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -37,6 +34,8 @@ public class DefaultBeanFactory implements BeanFactory {
 
     private static Set<Class<?>> toBeProxyClassSet = new HashSet<>();
 
+    private static List<BeanPostProcessor> beanPostProcessorList = new LinkedList<>();
+
     public void generateBeanDefinition(Set<Class<?>> classSet) {
         for (Class<?> cls : classSet) {
             BeanDefinition beanDefinition = new BeanDefinition(cls, cls.getSimpleName());
@@ -48,7 +47,32 @@ public class DefaultBeanFactory implements BeanFactory {
             }
             beanDefinitionMap.put(cls.getSimpleName(), beanDefinition);
         }
+    }
 
+    /**
+     * 调用BeanPostProcessor
+     * 逻辑:检查当前类是否实现了BeanPostProcessor接口 如果是的话，加入到列表之后在进行调用
+     * @param object
+     */
+    private void doBeanPostProcessor(Object object) {
+        registerBeanPostProcessor(object);
+        for (BeanPostProcessor beanPostProcessor : beanPostProcessorList) {
+            beanPostProcessor.before(object);
+        }
+    }
+
+
+    private void registerBeanPostProcessor(Object object) {
+        Class<?>[] interfaces = object.getClass().getInterfaces();
+        for (Class<?> interfaceClass : interfaces) {
+            if(interfaceClass == BeanPostProcessor.class) {
+                addBeanPostProcessor((BeanPostProcessor) object);
+            }
+        }
+    }
+
+    private void addBeanPostProcessor(BeanPostProcessor object) {
+        beanPostProcessorList.add(object);
     }
 
     /**
@@ -158,6 +182,10 @@ public class DefaultBeanFactory implements BeanFactory {
         }
 
         this.singletonObjects.put(name, objectInstance);
+
+        //调用BeanPostProcessor
+        doBeanPostProcessor(objectInstance);
+
         return objectInstance;
 
     }

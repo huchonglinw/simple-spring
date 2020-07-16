@@ -24,10 +24,15 @@ public class demo{
 ````  
 > 只实现了基于jdk动态代理的，所以必须带接口  
   
-### 二、web模块  
+### 二、web  
 - #### web.xml
 >配置DispatcherServlet，并且设置容器启动时就加载此Servlet。  
 用于拦截指定的所有请求，并在service()方法里做相应处理
+- #### 配置文件
+```properties
+controllerPackage=org.com.controller
+poPackage=org.com.po
+```
 
 ## 个人的
 ### 代办
